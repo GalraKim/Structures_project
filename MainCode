@@ -1,3 +1,4 @@
+//Задачка - найти самые старые книги из файла и записать их в другой файл
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -9,7 +10,7 @@ struct Input_Data {
     char name[30];
     int year;
 };
-struct Output_Data {
+struct Output_Data {//вот это вообще как юзать..типа записывать инфу в эту структуру а потом в файл..?Так это же муторно и можно без нее
     char author[30];
     char name[30];
     int year;
@@ -60,7 +61,7 @@ int main()
     int num;
     fin >> num;
     Data_Libraly = new Input_Data[num];
-    for (int i = 0; i < num; i++) {
+    for (int i = 0; i < num; i++) {//проблема тут, оно не читает из файла вообще ничего выдает какие то цифры типа не прочитал, с вектором забила потому что не работает поэтому юзаю динамический массив, но и он тут не работает
         fin >> Data_Libraly[i].number >> Data_Libraly[i].author >> Data_Libraly[i].name >> Data_Libraly[i].year;
         cout << Data_Libraly[i].number << Data_Libraly[i].author << Data_Libraly[i].name << Data_Libraly[i].year;
     }
