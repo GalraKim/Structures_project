@@ -13,7 +13,7 @@ struct Output_Data {
     char author[30];
     char name[30];
     int year;
-};
+};//Смотри ты можешь писать коменты тут сам и исправлять код тоже!!!
 void ReadData_Input(int amount, Input_Data* informationAboutBooks, ifstream& f) {
     for (int i = 0; i < amount; i++) {
         f >> informationAboutBooks[i].number >> informationAboutBooks[i].author >> informationAboutBooks[i].name
