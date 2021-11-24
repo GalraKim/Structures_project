@@ -1,0 +1,72 @@
+#include <fstream>
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+struct Input_Data {
+    int number;
+    char author[30];
+    char name[30];
+    int year;
+};
+struct Output_Data {
+    char author[30];
+    char name[30];
+    int year;
+};
+void ReadData_Input(int amount, Input_Data* informationAboutBooks, ifstream& f) {
+    for (int i = 0; i < amount; i++) {
+        f >> informationAboutBooks[i].number >> informationAboutBooks[i].author >> informationAboutBooks[i].name
+            >> informationAboutBooks[i].year;
+    }
+}
+
+void Output(int index, Input_Data* listOfBooks, ofstream& output) {
+    output << listOfBooks[index].author << "\t" << listOfBooks[index].author <<
+        "\t" << listOfBooks[index].name << "\t" << listOfBooks[index].year<< endl;
+}
+
+void Find_the_oldest_books(int number, Input_Data* books_list) {
+    int min_year = 3000;
+    int pre_min_year = 3000;
+    int pre_pre_min_year = 3000;
+    int counter_min_year1=0, counter_min_year2=0, counter_min_year3 = 0;
+    for (int i = 0; i < number; i++) {
+        if (books_list[i].year < min_year) {
+            min_year = books_list[i].year;
+            counter_min_year1 = i;
+        }
+        else if (books_list[i].year < pre_min_year) {
+            pre_min_year = books_list[i].year;
+            counter_min_year2 = i;
+        }
+        else if (books_list[i].year < pre_pre_min_year) {
+            pre_pre_min_year = books_list[i].year;
+            counter_min_year3 = i;
+        }
+    }
+    ofstream output;
+    output.open("Output.txt");
+    output << "The oldest books in the library:" << endl;
+    Output(counter_min_year1, books_list, output);
+    Output(counter_min_year2, books_list, output);
+    Output(counter_min_year3, books_list, output);
+    output.close();
+}
+int main()
+{
+    ifstream fin("InputFile.txt");
+    Input_Data* Data_Libraly;
+    int num;
+    fin >> num;
+    Data_Libraly = new Input_Data[num];
+    for (int i = 0; i < num; i++) {
+        fin >> Data_Libraly[i].number >> Data_Libraly[i].author >> Data_Libraly[i].name >> Data_Libraly[i].year;
+        cout << Data_Libraly[i].number << Data_Libraly[i].author << Data_Libraly[i].name << Data_Libraly[i].year;
+    }
+   // ReadData_Input(num, Data_Libraly, fin);
+    Find_the_oldest_books(num, Data_Libraly);
+
+
+}
+
